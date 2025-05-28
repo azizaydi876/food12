@@ -5,11 +5,12 @@
 }
 
 body {
+margin: 0;
 
-
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #cc2b8e, #560a58);
+  font-family: ' Arial, sans-serif';
+  background: linear-gradient(135deg, #983373, #593172);
   color: #fff;
+  padding: 20px
 }
 
 .navbar {
@@ -69,14 +70,15 @@ body {
   border-radius: 50px;
   background: white;
   width: 100%;
-  max-width: 500px;
+  max-width: 400px;
+  margin-bottom: 20px;
 }
 
 .search-bar input {
   flex: 1;
   border: none;
-  padding: 1rem;
-  font-size: 1rem;
+  padding: 10px;
+  font-size: 16px;
   outline: none;
 }
 
@@ -84,18 +86,17 @@ body {
   background-color: #9333ea;
   color: #fff;
   border: none;
-  padding: 0 2rem;
+  padding: 10px 20px;
   font-weight: bold;
   cursor: pointer;
+   border: none;
+   border-radius: 0 25px 25px 0;
 }
-
 .example-prompts {
   margin-top: 2rem;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 20px;
-
   padding: 1rem;
-
 }
 
 .prompts span {
@@ -117,10 +118,7 @@ body {
     justify-content: space-between;
     max-width: 10em;
     flex-direction: column;
-    align-items: flex-end;
-
-
-    
+    align-items: flex-end;    
 }
 
 .img {
@@ -131,31 +129,13 @@ body {
     justify-content: space-between;
     max-width: 10em;
     flex-direction: column;
-
 }
 
-.large-img {
-  grid-column: span 2;
-  grid-row: span 2;
-    border-radius: 30px;
-}
-
-  .medium-img {
-    border-radius: 20px;
-}
-
-
-.icon-img {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgba(255, 255, 255, 0.15);
-  font-size: 2rem;
-}
 #card-container{
 display: flex;
 justify-content: space-around;
 flex-wrap: wrap;
+gap:15px;
 
 }
 .card {
@@ -172,19 +152,23 @@ flex-wrap: wrap;
 
 .card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.3);
 }
 
 .card-title {
     margin: 0 0 10px 0;
     color: #709a7d;
 }
-
+  .card.selected {
+      border: 3px solid #9333ea;
+      background: #f3e5ff;
+      color: #37005b;
+    }
 .card-content {
     margin: 0 0 10px 0;
     color: #5f6368;
+    font-size: 1.2rem;
 }
-
 .card-image {
     width: 100%;
     height: 70%;

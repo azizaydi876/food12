@@ -1,250 +1,152 @@
+// Food Recipe Card Application
+// This is an object named recipes that stores several recipes.
+// Each recipe ( slata, tajin) is a key with a corresponding object value.
+// Each recipe object contains:
+// title: The name of the recipe.
+// ingredients: A list of ingredients (array of strings).
+// image: A path to an image representing the dish.
+var  recipes = {
+  slata: {
+    title: "Slata Mechweya",
+    ingredients: [
+      "Grilled Tomatoes",
+      "Grilled Peppers",
+      "Grilled Onions",
+      "Salt (1g)",
+      "Olive Oil",
+      "Grilled Chicken"
+    ],
+    image: "./img/slata.jpg"
+  },
+  tajin: {
+    title: "Tajin",
+    ingredients: [
+      "Grilled Chicken",
+      "8 Eggs",
+      "1/4 cup Olive Oil",
+      "50g Grated Cheese"
+    ],
+    image: "./img/s.jpg"
+  },
+  borzgen: {
+    title: "Borzgen",
+    ingredients: [
+      "700g Lamb Meat",
+      "750g Couscous",
+      "Rosemary",
+      "1 tbsp Salt",
+      "100g Sugar",
+      "200g Butter",
+      "250ml Milk",
+      "500g Dates",
+      "250g Peanuts"
+    ],
+    image: "./img/borzegen.jpeg"
+  },
+  spaghetti: {
+    title: "Spaghetti",
+    ingredients: [
+      "Spaghetti Pasta (cooked)",
+      "Tomato Sauce (cooked)",
+      "2g Salt",
+      "2g Black Pepper",
+      "2 tbsp Olive Oil",
+      "7 Garlic Cloves (minced)",
+      "400g Minced Meat"
+    ],
+    image: "./img/coscous.jpeg"
+  }
+};
 
-function MakeSlatamechweya(){
-   insatnce.tomato=tomato
-    insatnce.grilled pepper=grilled pepper
-    insatnce.onions=onions
-    instance.salt=salt 
-    insatnce.olive oil=olive oil
-    insatnce.eggs=eggs
-    instance.chicken=chicken
-    instance.grilledtomato=grilledtomato
-    insatnce.grilledonion=grilledonion
-    insatnce.grilledpepper=grilledpeper
-    return instance
+// Reference DOM elements
+// These lines connect your JavaScript code to HTML elements using their id.
+
+// input: Where users type the recipe name.
+
+// addButton: The "Add Card" button the user clicks.
+
+// container: The section where new recipe cards will appear on the page.
+var input = document.getElementById("card-input");
+var addButton = document.getElementById("add-card");
+var  container = document.getElementById("card-container");
+
+// Handle Add Card button click
+addButton.addEventListener("click", function() { // Runs the code when the button is clicked
+  // Get the text entered by the user
+  var userInput = input.value; //Gets the text the user typed.
+
+  // Remove spaces at the beginning and end
+  userInput = userInput.trim(); // Removes extra spaces from the start and end.
+
+  // Change all letters to lowercase
+  userInput = userInput.toLowerCase();//Converts all letters to lowercase so it's easier to compare.
+
+  // Match user input to recipe keys
+  var recipeKey = null;
+  var recipeNames = ["slata", "tajin", "borzgen", "spaghetti"];
+
+// Loop through each recipe name
+for (var i = 0; i < recipeNames.length; i++) {
+  if (userInput.includes(recipeNames[i])) {
+    recipeKey = recipeNames[i];
+    break; // Stop the loop once we find a match
+  }
+}
+// Check if a recipe key was found
+if (recipeKey !== null) { //Makes sure the user typed a valid recipe name
+  // Get the recipe object
+  var recipe = recipes[recipeKey];// Accesses the correct recipe from the recipes object
+
+  // Show the recipe card
+  addRecipeCard(recipe);//Calls the function to show the recipe on the page
+
+  // Clear the input box
+  input.value = "";//Clears the input box after adding the card
+} else {
+  // If recipe not found, show an alert
+  alert("Recipe not found. Try Slata, Tajin, Borzgen or Spaghetti."); //Shows a message if the input didn't match any recipe.
+}
+});
+
+// Function to create and show a card
+function addRecipeCard(recipe) { //This is the start of the function named addRecipeCard.
+  //It accepts one parameter: recipe — an object that contains the recipe's title, image path, and a list of ingredients.
+  // Create a new div for the recipe card
+  var card = document.createElement("div");// Creates a new div element to hold the recipe card
+  card.classList.add("card"); // Add a CSS class to the div
+
+  // Create an image element
+  var image = document.createElement("img");//A new <img> tag is created to show the recipe's image.
+  image.classList.add("card-image");// Adds a CSS class to the image for styling
+  image.src = recipe.image; // Sets the source of the image to the path provided in the recipe object
+  image.alt = recipe.title;// Sets the alt text of the image to the recipe title for accessibility
+
+  // Create a title (h3 element)
+  var title = document.createElement("h3");// Creates a new <h3> tag for the recipe title
+  title.classList.add("card-title");// Adds a CSS class to the title for styling
+  title.textContent = recipe.title;// Sets the text content of the title to the recipe's title from the recipe object
+
+  // Create a list (ul element) for ingredients
+  var list = document.createElement("ul");// Creates a new <ul> tag to hold the list of ingredients
+  list.classList.add("card-content");// Adds a CSS class to the list for styling
+
+  // Add each ingredient to the list
+  //This for loop goes through each ingredient in the recipe.ingredients array
+  for (var i = 0; i < recipe.ingredients.length; i++) {
+    var item = document.createElement("li");//Creates a <li> (list item).
+    item.textContent = recipe.ingredients[i];//Sets the text to the ingredient's name.
+    list.appendChild(item);//Adds it to the <ul> list
+  }
+
+  // Add image, title, and list to the card
+  card.appendChild(image);
+  card.appendChild(title);
+  card.appendChild(list);
+
+  // Add the card to the container on the page
+  container.appendChild(card);
 }
 
-       var grilledtomato=function(){
-if (this.tomato===grilled) {
-             console.log("tomato is ready to make grilled salad")
-             }
-            
-        }
-        var grilledonion=function(){
-            if (this.onion===grilled) {
-               console.log("onion is ready to make grilled salad")
-                
-            }
-            
-        }
-         var grilledpeper=function(){
-           if(this.pepper===grilled){
-    console.log("pepper is ready to make grilled salad")
-
-            }
-        }
-        var MakeEggs=function(){
-            if (eggs===8) {
-            console.log( "eggs is ready to make grilled sallad ")
-         }
-        }
-         var  PutSalt=function() {
-            if (sal===1gr) {
-                console.logg("salt is ready to put in slata mechweya")
-                
-            }
-     
-            
-         }
-         var addGrilledSalad=function(){
-            this.tomato=this.tomato+this.GrilledSalad
-            this.onion=this.onion+this.GrilledSalad
-            this.pepper=this.pepper+this.GrilledSalad
-            this.Olive oil=this. Olive oil+this.GrilledSalad
-            this.Salt=this.Salt+this.GrilledSalad
-
-
-
-         }
-
-         
-
-    }
-}
-function MakeTajin() {
-    var instance={}
-    instance.chicken=chicken
-    instance.eggs=8
-    instance.oliveoil=oliveoil
-    insatnce.gratedCheese =gratedCheese
-    instance.addTajin=addTajin 
-    instance.tajin=tajin 
-    return instance}
-
-        var MakeChicken=function() {
-            if (this.chicken===grilled) {
-                console.log("chicken is ready to MakeTajin")
-                
-            }
-            
-        }
-         var MakeEggs=function() {
-            if (this.eggs===8) {
-                console.log("eggs is ready to make tajin")
-
-                
-            }
-         }
-         var MakegratedCheese=function(){
-            if (this.gratedChees===50gr) {
-                console.log("gratedCheese is ready to make tajin")
-                
-            }
-         }
-         var MakeOliveOil=function (){
-            if (this.OliveOil===1/4cup) {
-                console.log("Olive oil is ready to make tajin")
-                
-            }
-         }
-         var addTajin=function(){
-            this.chicken=this.chiken+tajin
-            this.eggs=this.eggs+tajin 
-            this.gratedCheese=this.gratedCheese+tajin
-            this.OliveOil=this.oliveOil+tajin
-         }
-
-         
-        
-    
-
-function MakeSpaghetti(){
-    var instance={}
-    instance.spaghetti=spaghetii
-    instance .tomatoSauce=tomatoSauce
-    instance.salt=salt
-    instance.blackPepper=blackPepper
-    instance.OliveOil=OliveOil
-    instance.clovesGarlicminced=clovesGarlicminced
-    instance.mincemeat=mincemeat 
-    instance.pat=pat 
-    return instance}
-        var PutSalt=function() {
-            if (this.salt===2gr) {
-                console.log("salt is ready to make spaghetti ")
-            }
-            
-        }
-         var MakeBlackPepper=function() {
-              if (this.blackPepper===2gr) {
-                console.log("Black pepper is ready to make spaghetti")
-                
-              }
-            
-         }
-         var MakeOliveOil=function() {
-            if (this.OliveOil===2 tableSpoons) {
-                console.log("Olive Oil is ready to make spaghetti")
-            }
-            
-         }
-         var MakeClovesGarlicminced=function() {
-            if (this.clovesGarlicminced===7) {
-                console.log("cloves Garlic minced is ready to make spaghetti")
-            }
-            
-         }
-         var MakeMinceMeat=function() {
-            if (this.MinceMeat===400gr) {
-                console.log("Mince meat is ready to make spaghetti")
-            }
-            
-         }
-         var MakeTomatoSauce=function() {
-            if (this.tomatoSauce===coocked) {
-                console.log("tomato sauce is ready to make spaghetti")
-            }
-            
-         }
-         var MakePat=function() {
-            if (this.Pat===coocked) {
-                console.log("the Pat of the spaghetti is ready to make spaghetti")
-                
-            }
-            
-         }
-         var addSpaghetti=function() {
-            this.blackPepper=this.blackPepper+sphagetti
-            this.OliveOil=this.OliveOil+spaghetti
-            this.clovesGarlicminced=this.clovesGarlicminced+spaghetti
-            this.MinceMeat=this.MinceMeat+spaghetti 
-            this.TomatoSauce=this.TomatoSauce+spaghetti
-            this.Pat=this.pat+sphagetti
-            
-         }
-         function MakeBorzgen(){
-            var instance={}
-            instance.lambmeat=lambmeat
-            instance.couscous=couscous
-            instance.rosemary=rosemary
-            instance.salt=salt
-            instance.sugar=sugar
-            instance.butter=butter
-            instance.Milk=Milk
-            instance.dates=dates
-            instance.peanuts=peanuts
-            return instance
-
-            }
-            var MakeLambMeat=function(){
-                if (this.lambmeat===700gr) {
-                    console.log("Lamb meat is ready to make Borzgen")
-                }
-            }
-            var MakeCouscous=function() {
-                if (this.Couscous==="750gr") {
-                    console.log("Couscous is ready to make Borzgen")
-                }
-                
-            }
-            var MakeSalt=function() {
-                if (this.salt===1tbsp) {
-                    console.log("Salt is ready to make Borzgen")
-                    
-                }
-                
-            }
-            var MakeSugar=function() {
-                if (this.sugar===100gr) {
-                    console.log("sugar is ready to make Borzgen")
-                }
-                
-            }
-            var MakeButter=function() {
-                if (this.Butter===200gr) {
-                    console.log("Sugar is ready to make Borzgen")
-                }
-                
-            }
-            var MakeMilk=function() {
-                if (this.Milk===250ml) {
-                    console.log("Milk is ready to make Borzgen")
-                }
-                
-            }
-            var MakeDates=function() {
-                if (this.dates===500gr) {
-                    console.log("dates is ready to make Borzgen")
-                }
-                
-            }
-            var MakePeanuts=function() {
-                if (this.Peanuts===250gr) {
-                    console.log("Peanuts is ready to make Borzgen")
-                }
-                
-            }
-            var AddBorzgen=function() {
-                this.lambMeat=this.lambMeat+Borzgen
-                this.Couscous=this.Couscous+Borzgen
-                this.Salt=this.Salt+Borzgen 
-                this.Sugar=this.Sugar+Borzgen
-                this.Butter=this.Butter+Borzgen
-                this.Milk=this.Milk+Borzgen 
-                this.Dates=this.Dates+Borzgen
-                this.Peanuts=this.Peanuts+Borzgen 
-                
-            }
-         }
 
 
     
