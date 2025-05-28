@@ -16,7 +16,7 @@ var  recipes = {
       "Olive Oil",
       "Grilled Chicken"
     ],
-    image: "./img/slata.jpg"
+    image: "./Media/slata.webp"
   },
   tajin: {
     title: "Tajin",
@@ -26,7 +26,7 @@ var  recipes = {
       "1/4 cup Olive Oil",
       "50g Grated Cheese"
     ],
-    image: "./img/s.jpg"
+    image: "./Media/tajin.webp"
   },
   borzgen: {
     title: "Borzgen",
@@ -41,7 +41,7 @@ var  recipes = {
       "500g Dates",
       "250g Peanuts"
     ],
-    image: "./img/borzegen.jpeg"
+    image: "./Media/Borzgen.jpeg"
   },
   spaghetti: {
     title: "Spaghetti",
@@ -54,8 +54,33 @@ var  recipes = {
       "7 Garlic Cloves (minced)",
       "400g Minced Meat"
     ],
-    image: "./img/coscous.jpeg"
+    image: "./Media/SPGHAGETTI.jpg"
+  },
+  couscous: {
+    title:"couscous",
+    ingredients:[
+      "500 grams of Uncooked Gluten-Free Couscous",
+      "75 ml of Virgin Olive Oil",
+      "2 Large Diced Red Onions",
+      "2 Cloves of Diced Garlic",
+      "400 grams of Beef Fondue",
+      "½ Tablespoon of Paprika",
+      "½ Tablespoon of Ground Coriander",
+      "½ teaspoon of Ground Turmeric",
+      "1 teaspoon of Salt",
+      "½ teaspoon of Black Pepper",
+      "1 teaspoon of Ground Ginger",
+      "2 Tablespoons of Tomato Paste",
+      "2 Medium Potatoes Peeled and Cut Lengthwise in Half",
+      "2 Carrots Peeled and Cut Lengthwise in Half",
+      "3 Zucchini Sliced Lengthwise into Quarters",
+      "4 Quarters of a Small Pumpkin",
+      "½ cup of Cooked and Drained Chickpeas"
+
+    ],
+    image:"./Media/couscous.jpeg"
   }
+
 };
 
 // Reference DOM elements
@@ -83,15 +108,20 @@ addButton.addEventListener("click", function() { // Runs the code when the butto
 
   // Match user input to recipe keys
   var recipeKey = null;
-  var recipeNames = ["slata", "tajin", "borzgen", "spaghetti"];
+  var recipeNames = ["couscous","slata", "tajin", "borzgen", "spaghetti",];
+  console.log("userInput",userInput);
 
 // Loop through each recipe name
 for (var i = 0; i < recipeNames.length; i++) {
+  console.log("userInput",userInput);
+  console.log("userInput",recipeNames[i]);
+  
   if (userInput.includes(recipeNames[i])) {
     recipeKey = recipeNames[i];
     break; // Stop the loop once we find a match
   }
 }
+
 // Check if a recipe key was found
 if (recipeKey !== null) { //Makes sure the user typed a valid recipe name
   // Get the recipe object
@@ -104,7 +134,7 @@ if (recipeKey !== null) { //Makes sure the user typed a valid recipe name
   input.value = "";//Clears the input box after adding the card
 } else {
   // If recipe not found, show an alert
-  alert("Recipe not found. Try Slata, Tajin, Borzgen or Spaghetti."); //Shows a message if the input didn't match any recipe.
+  // alert("Recipe not found. Try Slata, Tajin, Borzgen or Spaghetti."); //Shows a message if the input didn't match any recipe.
 }
 });
 
